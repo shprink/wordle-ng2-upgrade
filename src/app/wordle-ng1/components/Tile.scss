@@ -1,0 +1,89 @@
+wordle-tile {
+  display: inline-block;
+  .tile {
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: var(--tile-text-color);
+    text-transform: uppercase;
+    user-select: none;
+  }
+  .tile::before {
+    content: "";
+    display: inline-block;
+    padding-bottom: 100%;
+  }
+
+  /* Allow tiles to be smaller on small screens */
+  @media (max-height: 600px) {
+    .tile {
+      font-size: 1em;
+      line-height: 1em;
+    }
+  }
+  &[data-state="⬜️"] .tile {
+    border: 2px solid var(--color-tone-4);
+  }
+  &[data-state="⬜️"][data-letter] .tile {
+    background-color: var(--color-tone-7);
+    border: 2px solid var(--color-tone-3);
+    color: var(--color-tone-1);
+  }
+  &[data-state="🟩"] .tile {
+    background-color: var(--color-correct);
+  }
+  &[data-state="🟨"] .tile {
+    background-color: var(--color-present);
+  }
+  &[data-state="🟦"] .tile {
+    background-color: var(--color-absent);
+  }
+  &[data-animation="pop"] .tile {
+    animation-name: pop;
+    animation-duration: 100ms;
+  }
+  &[data-animation="flipin"] .tile {
+    animation-name: flipin;
+    animation-duration: 250ms;
+    animation-delay: var(--anim-delay, 0);
+    animation-timing-function: ease-in;
+  }
+  &[data-animation="flipout"] .tile {
+    animation-name: flipout;
+    animation-duration: 250ms;
+    animation-timing-function: ease-in;
+  }
+}
+@keyframes pop {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+@keyframes flipin {
+  0% {
+    transform: rotateX(0);
+  }
+  100% {
+    transform: rotateX(-90deg);
+  }
+}
+@keyframes flipout {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}

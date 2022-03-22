@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #eee;
+}
+
+@import "./app/wordle/components/App/App.scss";
+
+@import "./app/wordle-ng1/components/Tile.scss";
+@import "./app/wordle-ng1/components/Keyboard.scss";
+@import "./app/wordle-ng1/components/Row.scss";
